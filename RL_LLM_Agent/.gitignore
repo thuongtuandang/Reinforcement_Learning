@@ -123,3 +123,5 @@ db.sqlite3
 
 # project-specific
 *.pickle
+
+models/*
