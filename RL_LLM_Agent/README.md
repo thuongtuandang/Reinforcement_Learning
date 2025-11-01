@@ -38,7 +38,7 @@ python train_rl.py
 
 The RL model is saved at models/
 
-It can fail, and in case it fails, you can change num_obstacles in train_rl.py (default 45)
+It can fail, and in case it fails, you can run the training script again, or change num_obstacles in train_rl.py (default 45)
 
 # Watch the LLM agent play
 
