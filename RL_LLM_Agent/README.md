@@ -1,4 +1,4 @@
-Reinforcement Learning + LLM Agent in Gridworld
+# Reinforcement Learning + LLM Agent in Gridworld
 
 # Can a Large Language Model play a game on its own?
 
