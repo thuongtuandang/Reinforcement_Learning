@@ -21,11 +21,15 @@ The LLM doesn't learn via RL — it uses an RL model as one of its decision tool
 # Try it yourself
 
 git clone https://github.com/thuongtuandang/Reinforcement_Learning.git
+
 cd Reinforcement_Learning/RL_LLM_Agent
 
 Create a .env file:
+
 OPENAI_API_KEY=your_api_key
+
 OPENAI_MODEL=gpt-4o-mini
 
 python train_rl.py   # Train Q-learning model
+
 python main.py       # Watch the LLM agent play
