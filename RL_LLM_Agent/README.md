@@ -24,7 +24,7 @@ git clone https://github.com/thuongtuandang/Reinforcement_Learning.git
 
 cd Reinforcement_Learning/RL_LLM_Agent
 
-pip install openai
+pip install openai==2.6.1
 
 Create a .env file:
 
