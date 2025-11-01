@@ -46,8 +46,8 @@ def main():
     print("=" * 50)
     
     # Create ONE fixed grid for training
-    env = GridWorld(size=10, num_obstacles=40)  # More obstacles!
-    print(f"\nEnvironment: {env.size}x{env.size} grid with 40 obstacles")
+    env = GridWorld(size=10, num_obstacles=45)  # More obstacles!
+    print(f"\nEnvironment: {env.size}x{env.size} grid with 45 obstacles")
     print(f"Start: {env.start}, Target: {env.target}")
     print("\nGrid layout:")
     env.render()

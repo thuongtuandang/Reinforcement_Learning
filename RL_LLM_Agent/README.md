@@ -26,12 +26,20 @@ cd Reinforcement_Learning/RL_LLM_Agent
 
 pip install openai==2.6.1
 
-Create a .env file:
+# Create a .env file:
 
 OPENAI_API_KEY=your_api_key
 
 OPENAI_MODEL=gpt-4o-mini
 
-python train_rl.py   # Train Q-learning model (model is saved at models/)
+# Train Q-learning model
 
-python main.py       # Watch the LLM agent play
+python train_rl.py
+
+The RL model is saved at models/
+
+It can fail, and in case it fails, you can change num_obstacles in train_rl.py (default 45)
+
+# Watch the LLM agent play
+
+python main.py       
