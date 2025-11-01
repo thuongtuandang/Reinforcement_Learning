@@ -125,3 +125,4 @@ db.sqlite3
 *.pickle
 
 models/*
+!models/.gitkeep
