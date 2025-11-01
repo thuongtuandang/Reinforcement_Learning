@@ -32,6 +32,6 @@ OPENAI_API_KEY=your_api_key
 
 OPENAI_MODEL=gpt-4o-mini
 
-python train_rl.py   # Train Q-learning model
+python train_rl.py   # Train Q-learning model (model is saved at models/)
 
 python main.py       # Watch the LLM agent play
