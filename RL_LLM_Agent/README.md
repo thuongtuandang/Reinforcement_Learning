@@ -24,6 +24,8 @@ git clone https://github.com/thuongtuandang/Reinforcement_Learning.git
 
 cd Reinforcement_Learning/RL_LLM_Agent
 
+pip install openai
+
 Create a .env file:
 
 OPENAI_API_KEY=your_api_key
