@@ -42,4 +42,8 @@ It can fail, and in case it fails, you can run the training script again, or cha
 
 # Watch the LLM agent play
 
-python main.py       
+python main.py
+
+# Documentation
+
+In docs/Q_Learning.pdf, you will find the theory of Q-learning. The core of Q-learning is a fixed point theorem, and how can we approximate this fixed point to obtain the optimal policy. 
