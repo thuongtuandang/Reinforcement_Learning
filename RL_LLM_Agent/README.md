@@ -46,4 +46,6 @@ python main.py
 
 # Documentation
 
-In docs/Q_Learning.pdf, you will find the theory of Q-learning. The core of Q-learning is a fixed point theorem, and how can we approximate this fixed point to obtain the optimal policy. 
+In docs/Q_Learning.pdf, you will find the theory of Q-learning. The core of Q-learning is a fixed point theorem, and how can we approximate this fixed point to obtain the optimal policy.
+
+You will also find the implementation guide in docs/Implementation_Guide.pdf. It will include the structure of the project (LLM agent, tools and Q-learning) for gridworld game. At the end, I will share my experimental results and raise some questions.
