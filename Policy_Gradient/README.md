@@ -18,7 +18,7 @@ The code demonstrates these concepts through a **GridWorld navigation task**:
 
 ### Architecture
 - **Observation**: 3-channel image (walls, agent position, goal position)
-- **Policy**: Convolutional neural network (3×8×8 → 64 features → 4 actions)
+- **Policy**: CNN (3×8×8 → 64 features → 4 actions)
 - **Actions**: UP, RIGHT, DOWN, LEFT
 
 ## Usage
@@ -47,4 +47,4 @@ Visualizes the trained agent navigating through new, unseen grids with step-by-s
 
 ## Results
 
-The trained agent achieves high success rates on both training grids and generalizes well to completely new grid configurations, demonstrating effective spatial reasoning and navigation skills.
+The trained agent achieves high success rates on both training grids and generalizes well to completely new grid configurations.
