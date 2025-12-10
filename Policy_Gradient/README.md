@@ -10,7 +10,9 @@ This project implements **Policy Gradient** methods with theoretical foundations
 
 ## Implementation
 
-The code demonstrates these concepts through a **GridWorld navigation task**:
+`docs/Policy_Gradient__Implementation.pdf` contains full detail about the implementation for GridWorld game.
+
+**Overview**
 - **Environment**: 8×8 grid with randomly placed obstacles and goals
 - **Agent**: CNN-based policy network that learns to navigate to the goal
 - **Training**: REINFORCE algorithm with entropy regularization on a fixed set of 400 training grids
@@ -32,7 +34,18 @@ pip install -r requirements.txt
 ```bash
 python train_rl.py
 ```
-Trains the policy on 400 randomly generated grids for 500 updates. Saves the model to `models/policy.pt` and displays training statistics including success rate and loss metrics.
+Trains the policy on 400 randomly generated grids for 1000 updates. Saves the model to `models/policy.pt` and displays training statistics including success rate and loss metrics.
+
+### Evaluting
+```bash
+python eval_rl.py
+```
+Evaluates the policy on completely unseen 100 grids.
+
+**Optional arguments**
+- `--model_path`: path to the trained model
+- `--episodes`: number of episodes for evaluation (defaul 100)
+- `--seed`: random seed
 
 ### Testing
 ```bash
@@ -47,4 +60,4 @@ Visualizes the trained agent navigating through new, unseen grids with step-by-s
 
 ## Results
 
-The trained agent achieves high success rates on both training grids and generalizes well to completely new grid configurations.
+The trained agent generalizes well to completely new grid configuration. More detail can be found in `docs/Policy_Gradient__Implementation.pdf`

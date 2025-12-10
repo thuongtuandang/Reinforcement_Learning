@@ -242,46 +242,5 @@ def main():
     torch.save(policy.state_dict(), save_path)
     print(f"\nSaved policy to {save_path}")
 
-    # ---- Evaluation on NEW unseen grids (generalization test) ----
-    print("\n=== Evaluation on NEW Grids (generalization, 20 grids) ===")
-    eval_rng = np.random.default_rng(seed + 1000)  # Different seed for eval
-    eval_successes = []
-    eval_path_lengths = []
-    eval_wall_hits = []
-    
-    for ep in range(20):
-        env = GridWorld(cfg=cfg, rng=eval_rng)
-        obs_np = env.reset()
-        done = False
-        steps = 0
-        walls = 0
-        
-        while not done:
-            obs_t = torch.tensor(obs_np, dtype=torch.float32, device=device).unsqueeze(0)
-            with torch.no_grad():
-                logits = policy.forward(obs_t)
-                action = torch.argmax(logits, dim=1).item()  # Greedy action
-            
-            obs_np, r, done, _ = env.step(action)
-            steps += 1
-            
-            # Count wall hits
-            if abs(r - cfg.wall_penalty) < 1e-6:  # Compare floats safely
-                walls += 1
-        
-        # Success if reached goal
-        success = (env.agent == env.goal)
-        eval_successes.append(success)
-        
-        if success:
-            eval_path_lengths.append(steps)
-            eval_wall_hits.append(walls)
-    
-    print(f"Generalization success rate: {np.mean(eval_successes):.2%}")
-    if eval_path_lengths:
-        print(f"Average path length: {np.mean(eval_path_lengths):.1f} steps")
-        print(f"Average wall hits: {np.mean(eval_wall_hits):.1f}")
-    print(f"\nTraining complete!")
-
 if __name__ == "__main__":
     main()
