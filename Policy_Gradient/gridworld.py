@@ -10,8 +10,8 @@ class GridConfig:
     size: int = 8
     obstacle_prob: float = 0.20
     max_steps: int = 64
-    step_penalty: float = -0.01     # penalty for moving to empty cell
-    wall_penalty: float = -0.1      # penalty for moving through wall
+    step_penalty: float = -0.1     # penalty for moving to empty cell
+    wall_penalty: float = -0.5      # penalty for moving through wall
     goal_reward: float = 1.0
 
 class GridWorld:

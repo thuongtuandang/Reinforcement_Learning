@@ -113,8 +113,8 @@ def main():
         size=8,
         obstacle_prob=0.20,
         max_steps=64,
-        step_penalty=-0.05,   # Small penalty for training stability
-        wall_penalty=-0.05,   # Same as step penalty (agent can't move through walls anyway in training)
+        step_penalty=-0.1,   
+        wall_penalty=-0.5,   
         goal_reward=1.0
     )
 
@@ -123,7 +123,7 @@ def main():
     lr = 2.5e-4
     entropy_coef = 0.01
     batch_episodes = 32          # episodes per update
-    total_updates = 500          # total parameter updates
+    total_updates = 1000          # total parameter updates
     print_every = 10
     num_train_grids = 400        # fixed set of training grids
     use_action_masking = True    # Prevent out-of-bounds actions (recommended)
@@ -242,42 +242,19 @@ def main():
     torch.save(policy.state_dict(), save_path)
     print(f"\nSaved policy to {save_path}")
 
-    # ---- Evaluation on training set ----
-    print("\n=== Evaluation on Training Set (20 random grids) ===")
-    train_eval_successes = []
-    
-    for ep in range(20):
-        grid_idx = np.random.randint(len(train_grids))
-        grid_data = train_grids[grid_idx]
-        env = GridWorld(cfg=cfg, rng=env_rng)
-        obs_np = load_grid_into_env(env, grid_data)
-        done = False
-        total_reward = 0
-        
-        while not done:
-            obs_t = torch.tensor(obs_np, dtype=torch.float32, device=device).unsqueeze(0)
-            with torch.no_grad():
-                logits = policy.forward(obs_t)
-                action = torch.argmax(logits, dim=1).item()  # Greedy action
-            
-            obs_np, r, done, _ = env.step(action)
-            total_reward += r
-        
-        success = 1.0 if total_reward > 0 else 0.0
-        train_eval_successes.append(success)
-    
-    print(f"Training set success rate: {np.mean(train_eval_successes):.2%}")
-
     # ---- Evaluation on NEW unseen grids (generalization test) ----
-    print("\n=== Evaluation on NEW Grids (generalization, 20 episodes) ===")
+    print("\n=== Evaluation on NEW Grids (generalization, 20 grids) ===")
     eval_rng = np.random.default_rng(seed + 1000)  # Different seed for eval
     eval_successes = []
+    eval_path_lengths = []
+    eval_wall_hits = []
     
     for ep in range(20):
         env = GridWorld(cfg=cfg, rng=eval_rng)
         obs_np = env.reset()
         done = False
-        total_reward = 0
+        steps = 0
+        walls = 0
         
         while not done:
             obs_t = torch.tensor(obs_np, dtype=torch.float32, device=device).unsqueeze(0)
@@ -286,14 +263,25 @@ def main():
                 action = torch.argmax(logits, dim=1).item()  # Greedy action
             
             obs_np, r, done, _ = env.step(action)
-            total_reward += r
+            steps += 1
+            
+            # Count wall hits
+            if abs(r - cfg.wall_penalty) < 1e-6:  # Compare floats safely
+                walls += 1
         
-        success = 1.0 if total_reward > 0 else 0.0
+        # Success if reached goal
+        success = (env.agent == env.goal)
         eval_successes.append(success)
+        
+        if success:
+            eval_path_lengths.append(steps)
+            eval_wall_hits.append(walls)
     
     print(f"Generalization success rate: {np.mean(eval_successes):.2%}")
+    if eval_path_lengths:
+        print(f"Average path length: {np.mean(eval_path_lengths):.1f} steps")
+        print(f"Average wall hits: {np.mean(eval_wall_hits):.1f}")
     print(f"\nTraining complete!")
-
 
 if __name__ == "__main__":
     main()
