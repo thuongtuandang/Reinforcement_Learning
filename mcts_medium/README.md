@@ -1,6 +1,6 @@
 # MCTS Tic-Tac-Toe
 
-AlphaZero-style Tic-Tac-Toe agent for a 5x5 board using Monte Carlo Tree Search (MCTS) and a small PyTorch policy/value network. The default training script uses the medium preset: 5x5 with 4 in a row to win.
+AlphaZero-style Tic-Tac-Toe agent for a 5x5 board using Monte Carlo Tree Search (MCTS) and a small PyTorch policy/value network. The default training script uses the medium preset: 5x5 with 4 in a row to win. The repository includes a trained checkpoint, and the resulting agent plays very strongly.
 
 ## Structure
 
@@ -9,11 +9,15 @@ AlphaZero-style Tic-Tac-Toe agent for a 5x5 board using Monte Carlo Tree Search 
 - `evaluation/` - scripts for evaluating trained agents
 - `play/` - human-vs-agent play scripts
 - `slides/` - seminar slides for MCTS and policy-value networks
-- `models/`, `saved_models/` - trained model checkpoints
+- `models/` - trained model checkpoint
 
 ## Documentation
 
 The seminar slides are available at `slides/MCTS.pdf`.
+
+## Trained Model
+
+The trained checkpoint is included at `models/trained_agent.pth`. You can play directly against the trained MCTS agent or run the evaluation scripts without retraining from scratch.
 
 ## Requirements
 

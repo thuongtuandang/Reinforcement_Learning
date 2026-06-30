@@ -18,7 +18,7 @@ See `Policy_Gradient/docs/Policy_Gradient_Theory.pdf` for the theory and `Policy
 
 ### mcts_medium
 
-AlphaZero-style Tic-Tac-Toe agent for a 5x5 board using Monte Carlo Tree Search and a PyTorch policy/value network. The project includes training, evaluation against random and minimax opponents, human play scripts, and seminar slides on MCTS and policy-value networks.
+AlphaZero-style Tic-Tac-Toe agent for a 5x5 board using Monte Carlo Tree Search and a PyTorch policy/value network. The project includes training, evaluation against random and minimax opponents, human play scripts, a strong trained model checkpoint, and seminar slides on MCTS and policy-value networks.
 
 See `mcts_medium/slides/MCTS.pdf` for the slides and `mcts_medium/README.md` for setup and usage.
 
