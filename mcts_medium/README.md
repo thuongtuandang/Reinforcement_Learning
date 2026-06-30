@@ -8,7 +8,12 @@ AlphaZero-style Tic-Tac-Toe agent for a 5x5 board using Monte Carlo Tree Search 
 - `train_agent/` - neural network, MCTS, and training scripts
 - `evaluation/` - scripts for evaluating trained agents
 - `play/` - human-vs-agent play scripts
+- `slides/` - seminar slides for MCTS and policy-value networks
 - `models/`, `saved_models/` - trained model checkpoints
+
+## Documentation
+
+The seminar slides are available at `slides/MCTS.pdf`.
 
 ## Requirements
 
